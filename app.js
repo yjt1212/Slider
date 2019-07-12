@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-// express.static(),设置静态目录
+// 设置静态目录
 app.use( express.static('public') );
 
 // 解决跨域
@@ -14,17 +14,15 @@ app.all('*', function(req, res, next) {
  	next();
  });
 
-//向客户端（浏览器）去发送数据
-//这其实就是，我们请求数据的第一个接口
+
 app.get('/getData', function( req, res ){
 
-	//写一个对象，本质上是字符串
 	var _obj = {a:'轮播图实例'};
 	// console.log( _obj );
 	res.send( _obj );
 });
 
-//第二个接口，返回轮播图的图片
+//返回轮播图的图片
 app.get('/slider_num', function( req, res ){
 
 	var _obj = {
@@ -37,7 +35,6 @@ app.get('/slider_num', function( req, res ){
 	};
 	res.send( _obj );
 });
-//在复杂一些，就是通过这个接口去访问数据库
 
 app.listen(9988, function(){
 	console.log('9988,中间件,已经启动');
